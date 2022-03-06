@@ -1,3 +1,5 @@
+package Tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,7 +44,7 @@ public class BaseTest {
     public void setup(){
         setUpBrowser("Chrome");
         driver.manage().window().maximize();
-        driver.get("https://llmsqaenv.azurewebsites.net/");
+        driver.get("http://localhost:3000/");
     }
 
     @AfterMethod

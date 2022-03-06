@@ -1,3 +1,5 @@
+package Tests;
+
 import Pages.LoginPage;
 import Pages.MainPage;
 import Utils.WindowHandles;
