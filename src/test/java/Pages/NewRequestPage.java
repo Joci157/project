@@ -47,7 +47,7 @@ public class NewRequestPage {
         semesterDropdown.selectByValue("Apr-Jun (II)");
     }
     public void writeComment(){
-        driver.findElement(comments).sendKeys("automation test");
+        driver.findElement(comments).sendKeys("automated testing");
     }
     public void clickSaveButton(){
         driver.findElement(saveButton).click();
