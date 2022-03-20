@@ -1,7 +1,6 @@
 package Pages;
 
 import Utils.WaitUtils;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -20,7 +19,6 @@ public class AuthorizationPage {
     public By newReqPageTitle =  By.className("hText");
     public By learnHisPageTitle = By.xpath("//h1['Mokymosi Istorija']");
     public By helpPageTitle = By.xpath("//h1['Pagalba']");
-
 
     public AuthorizationPage(WebDriver driver){
         this.driver = driver;

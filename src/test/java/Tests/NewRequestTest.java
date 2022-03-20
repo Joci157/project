@@ -37,17 +37,18 @@ public class NewRequestTest extends BaseTest{
         windowHandles.switchToMainWindow();
 
         authorizationPage.clickOnNewRequestLink();
-        newRequestPage.selectUser();
-        newRequestPage.selectLanguage();
+        mainPage.selectRandomUser();
+        newRequestPage.selectRandomLanguage();
         newRequestPage.enterDataToCostCenterField();
-        newRequestPage.selectTarget();
-        newRequestPage.selectSemester();
+        newRequestPage.selectRandomTarget();
+        newRequestPage.selectRandomSemester();
         newRequestPage.writeComment();
         newRequestPage.clickSaveButton();
+        newRequestPage.checkIfRequestCreatedMessageIsDisplayed();
     }
 
     @Test(priority = 2, dataProvider = "loginCredentials")
-        public void cancelNewRequest(String username, String password){
+        public void cancelNewRequest(String username, String password) throws InterruptedException {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         AuthorizationPage authorizationPage = new AuthorizationPage(driver);
@@ -66,11 +67,11 @@ public class NewRequestTest extends BaseTest{
         windowHandles.switchToMainWindow();
 
         authorizationPage.clickOnNewRequestLink();
-        newRequestPage.selectUser();
-        newRequestPage.selectLanguage();
+        mainPage.selectRandomUser();
+        newRequestPage.selectRandomLanguage();
         newRequestPage.enterDataToCostCenterField();
-        newRequestPage.selectTarget();
-        newRequestPage.selectSemester();
+        newRequestPage.selectRandomTarget();
+        newRequestPage.selectRandomSemester();
         newRequestPage.writeComment();
         newRequestPage.clickCancelButton();
         newRequestPage.getAlertMessageText();

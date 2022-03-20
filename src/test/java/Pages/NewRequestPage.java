@@ -3,48 +3,60 @@ package Pages;
 import Utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import java.util.List;
+import java.util.Random;
 
-public class NewRequestPage {
+public class  NewRequestPage {
 
     WebDriver driver;
 
-    public By user = By.id("Darius  Kuzmickas");
-    public By language = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[2]/div[1]/select");
+
+    public By randomLanguages = By.xpath(".//*[@id='lang']//option");
     public By costCenter = By.id("inputList");
-    public By target = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[2]/div[3]/select");
-    public By semester = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[2]/div[4]/select");
-    public By comments = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[3]/div[1]/textarea");
-    public By saveButton = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[3]/div[2]/div[2]/button[1]");
-    public By cancelButton = By.xpath("//*[@id=\"root\"]/div/main/div/form/div/div[3]/div[2]/div[2]/button[2]");
+    public By randomTargets = By.xpath(".//*[@id='targ']//option");
+    public By randomSemesters = By.xpath(".//*[@id='sem']//option");
+    public By comments = By.id("com");
+    public By saveButton = By.id("sav");
+    public By cancelButton = By.id("canc");
     public By alertMessage = By.className("modal-body");
     public By alertYesButton = By.xpath("/html/body/div[3]/div/div/div[3]/button[2]");
+    public By messageAfterSavingNewRequest = By.className("ajs-message");
 
     public NewRequestPage(WebDriver driver){
         this.driver = driver;
     }
-    public void selectUser(){
-        WaitUtils.waitUntilVisibilityOfElementLocated(driver, user, 10);
-        driver.findElement(user).click();
+    public void selectRandomLanguage() {
+        WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomLanguages, 10);
+        List<WebElement> allLanguages = driver.findElements(randomLanguages);
+        Random random = new Random();
+        int randomLanguage = random.nextInt(1, allLanguages.size());
+        allLanguages.get(randomLanguage).click();
     }
-    public void selectLanguage(){
-        driver.findElement(language).click();
-        Select langDropdown = new Select(driver.findElement(language));
-        langDropdown.selectByValue("Spanish");
+    public void selectRandomTarget() {
+        WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomTargets, 10);
+        List<WebElement> allTargets = driver.findElements(randomTargets);
+        Random random = new Random();
+        int randomTarget = random.nextInt(1, allTargets.size());
+        allTargets.get(randomTarget).click();
     }
-    public void enterDataToCostCenterField(){
-        driver.findElement(costCenter).sendKeys("485324");
+    public void selectRandomSemester() {
+        WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomSemesters, 10);
+        List<WebElement> allSemesters = driver.findElements(randomSemesters);
+        Random random = new Random();
+        int randomSemester = random.nextInt(1, allSemesters.size());
+        allSemesters.get(randomSemester).click();
     }
-    public void selectTarget(){
-        driver.findElement(target).click();
-        Select targetDropdown = new Select(driver.findElement(target));
-        targetDropdown.selectByValue("Work");
-    }
-    public void selectSemester(){
-        driver.findElement(semester).click();
-        Select semesterDropdown = new Select(driver.findElement(semester));
-        semesterDropdown.selectByValue("Apr-Jun (II)");
+    public void enterDataToCostCenterField() {
+        Random random = new Random();
+        String costCenterInput ="";
+        int inputLength = random.nextInt(1, 10);
+        for (int i = 1; i < inputLength; i++) {
+            int randomNumber = random.nextInt(0, 9);
+            costCenterInput = costCenterInput + randomNumber;
+        }
+        driver.findElement(costCenter).sendKeys(costCenterInput);
     }
     public void writeComment(){
         driver.findElement(comments).sendKeys("automated testing");
@@ -62,5 +74,10 @@ public class NewRequestPage {
     }
     public void clickAlertYesButtonToCancelNewRequest(){
         driver.findElement(alertYesButton).click();
+    }
+    public void checkIfRequestCreatedMessageIsDisplayed(){
+        WaitUtils.waitUntilVisibilityOfElementLocated(driver, messageAfterSavingNewRequest, 10);
+        String messageText = driver.findElement(messageAfterSavingNewRequest).getText();
+        Assert.assertTrue(messageText.contains("Request Created"), "Message was not displayed");
     }
 }
