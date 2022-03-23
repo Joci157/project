@@ -11,7 +11,7 @@ import java.util.Random;
 public class  NewRequestPage {
 
     WebDriver driver;
-
+    Random random = new Random();
 
     public By randomLanguages = By.xpath(".//*[@id='lang']//option");
     public By costCenter = By.id("inputList");
@@ -30,26 +30,23 @@ public class  NewRequestPage {
     public void selectRandomLanguage() {
         WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomLanguages, 10);
         List<WebElement> allLanguages = driver.findElements(randomLanguages);
-        Random random = new Random();
         int randomLanguage = random.nextInt(1, allLanguages.size());
         allLanguages.get(randomLanguage).click();
     }
     public void selectRandomTarget() {
         WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomTargets, 10);
         List<WebElement> allTargets = driver.findElements(randomTargets);
-        Random random = new Random();
         int randomTarget = random.nextInt(1, allTargets.size());
         allTargets.get(randomTarget).click();
     }
     public void selectRandomSemester() {
         WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomSemesters, 10);
         List<WebElement> allSemesters = driver.findElements(randomSemesters);
-        Random random = new Random();
         int randomSemester = random.nextInt(1, allSemesters.size());
         allSemesters.get(randomSemester).click();
     }
     public void enterDataToCostCenterField() {
-        Random random = new Random();
+        WaitUtils.waitUntilVisibilityOfElementLocated(driver, randomSemesters, 10);
         String costCenterInput ="";
         int inputLength = random.nextInt(1, 10);
         for (int i = 1; i < inputLength; i++) {
