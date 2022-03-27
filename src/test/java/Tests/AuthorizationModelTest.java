@@ -29,15 +29,11 @@ public class AuthorizationModelTest extends BaseTest{
 
         authorizationPage.clickOnHomeLink();
         authorizationPage.getHomePageTitleText();
-
         authorizationPage.clickOnNewRequestLink();
         authorizationPage.getNewReqPageTitleText();
-
         authorizationPage.clickOnClassroomsManagementLink();
-
         authorizationPage.clickOnLearningHistoryLink();
         authorizationPage.getLearnHisPageTitleText();
-
         authorizationPage.clickOnHelpLink();
         authorizationPage.getHelpPageTitleText();
     }
@@ -62,15 +58,13 @@ public class AuthorizationModelTest extends BaseTest{
 
         authorizationPage.clickOnHomeLink();
         authorizationPage.getHomePageTitleText();
-
         authorizationPage.clickOnNewRequestLink();
         authorizationPage.getNewReqPageTitleText();
-
         authorizationPage.clickOnLearningHistoryLink();
         authorizationPage.getLearnHisPageTitleText();
-
         authorizationPage.clickOnHelpLink();
         authorizationPage.getHelpPageTitleText();
+        authorizationPage.checkIfClassroomManagementLinkIsNotDisplayed();
     }
 
     @Test(priority = 3)
@@ -93,12 +87,12 @@ public class AuthorizationModelTest extends BaseTest{
 
         authorizationPage.clickOnHomeLink();
         authorizationPage.getHomePageTitleText();
-
         authorizationPage.clickOnLearningHistoryLink();
         authorizationPage.getLearnHisPageTitleText();
-
         authorizationPage.clickOnHelpLink();
         authorizationPage.getHelpPageTitleText();
+        authorizationPage.checkIfNewRequestAndClassroomsManagementLinksAreNotDisplayed();
+
     }
     @Test(priority = 4)
     public void StudentVisibleHeaderLinks() throws InterruptedException {
@@ -120,11 +114,10 @@ public class AuthorizationModelTest extends BaseTest{
 
         authorizationPage.clickOnHomeLink();
         authorizationPage.getHomePageTitleText();
-
         authorizationPage.clickOnLearningHistoryLink();
         authorizationPage.getLearnHisPageTitleText();
-
         authorizationPage.clickOnHelpLink();
         authorizationPage.getHelpPageTitleText();
+        authorizationPage.checkIfNewRequestAndClassroomsManagementLinksAreNotDisplayed();
     }
 }
